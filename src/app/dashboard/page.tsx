@@ -29,6 +29,7 @@ const Dashboard = () => {
   return (
     <div className="container mx-auto p-8">
       <h2 className="text-2xl font-bold mb-4">Welcome to the dashboard</h2>
+      <p>This is the dashboard page, you can add your content here</p>
     </div>
   );
 };

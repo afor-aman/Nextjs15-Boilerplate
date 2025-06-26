@@ -11,7 +11,7 @@ export const LogoutButton = () => {
   return (
     <Button variant="outline" className="w-full" onClick={() => {
         authClient.signOut();
-        router.push("/login");
+        router.push("/");
     }}><LogOutIcon />Logout</Button>
   )
 }
