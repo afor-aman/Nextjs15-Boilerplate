@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form"
 import { signInAction } from "@/server/user"
 import { useRouter } from "next/navigation"
+import { getSession } from "@/utils/getSession"
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -86,9 +87,19 @@ export function LoginForm({
   }
 
   const handleGoogleLogin = () => {
-    // Handle Google login
     console.log("Google login clicked")
   }
+
+  //fetch session and check if user is logged in if so redirect to dashboard
+  useEffect(() => {
+    const fetchSession = async () => {
+      const session = await getSession()
+      if (session?.data?.session) {
+        router.push("/dashboard")
+      }
+    }
+    fetchSession()
+  }, [])
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

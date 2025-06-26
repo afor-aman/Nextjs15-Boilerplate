@@ -1,8 +1,11 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getSession } from "@/utils/getSession";
+
 
 const Dashboard = () => {
   const [session, setSession] = useState<any>(null);
@@ -15,7 +18,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchSession = async () => {
-      const session = await authClient.getSession();
+      const session = await getSession();
+
       if (!session?.data?.session) {
         router.push("/login");
         return;
