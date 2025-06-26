@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { signUpAction } from "@/server/user"
+import { useRouter } from "next/navigation"
 
 const signupSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -41,7 +42,7 @@ export function SignupForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false)
-
+  const router = useRouter()
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -53,20 +54,38 @@ export function SignupForm({
 
   const onSubmit = async (data: SignupFormValues) => {
     setIsLoading(true)
+    
+    // Show loading toast
+    toast.loading("Creating your account...", {
+      id: "signup-toast"
+    })
+    
     try {
       const result = await signUpAction(data.email, data.password)
       
       if (result.success) {
-        toast.success("Account created successfully! Please sign in.")
+        toast.success("Account created successfully!", {
+          id: "signup-toast",
+          description: <p className="text-blue-500">You can now sign in with your credentials.</p>,
+          duration: 4000
+        })
         form.reset()
         // You can add redirect logic here
-        // router.push("/login")
+        router.push("/login")
       } else {
-        toast.error(result.error || "Failed to create account. Please try again.")
+        toast.error("Account creation failed", {
+          id: "signup-toast",
+          description: <p className="text-blue-500">{result.error || "Please try again with different credentials."}</p>,
+          duration: 5000
+        })
       }
     } catch (error) {
       console.error("Signup error:", error)
-      toast.error("An unexpected error occurred. Please try again.")
+      toast.error("Connection error", {
+        id: "signup-toast",
+        description: <p className="text-blue-500">Unable to connect to the server. Please try again.</p>,
+        duration: 5000
+      })
     } finally {
       setIsLoading(false)
     }

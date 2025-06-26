@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { signInAction } from "@/server/user"
+import { useRouter } from "next/navigation"
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -37,7 +38,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState(false)
-
+  const router = useRouter()
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -48,19 +49,37 @@ export function LoginForm({
 
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true)
+    
+    // Show loading toast
+    toast.loading("Signing you in...", {
+      id: "login-toast"
+    })
+    
     try {
       const result = await signInAction(data.email, data.password)
       
       if (result.success) {
-        toast.success("Successfully signed in!")
+        toast.success("Welcome back! Successfully signed in.", {
+          id: "login-toast",
+          description: <p className="text-blue-500">Redirecting you to your dashboard...</p>,
+          duration: 3000
+        })
         // You can add redirect logic here
-        // router.push("/dashboard")
+        router.push("/dashboard")
       } else {
-        toast.error(result.error || "Failed to sign in. Please try again.")
+        toast.error("Sign in failed", {
+          id: "login-toast",
+          description: <p className="text-blue-500">{result.error || "Please check your credentials and try again."}</p>,
+          duration: 5000
+        })
       }
     } catch (error) {
       console.error("Login error:", error)
-      toast.error("An unexpected error occurred. Please try again.")
+      toast.error("Connection error", {
+        id: "login-toast",
+        description: <p className="text-blue-500">Unable to connect to the server. Please try again.</p>,
+        duration: 5000
+      })
     } finally {
       setIsLoading(false)
     }
@@ -130,20 +149,23 @@ export function LoginForm({
                     <FormItem>
                       <div className="flex items-center">
                         <FormLabel>Password</FormLabel>
-                        <a
-                          href="#"
-                          className="ml-auto text-sm underline-offset-4 hover:underline"
-                        >
-                          Forgot your password?
-                        </a>
                       </div>
                       <FormControl>
                         <Input
                           type="password"
                           disabled={isLoading}
                           {...field}
-                        />
+                        />  
                       </FormControl>
+                        <p className="text-sm text-muted-foreground">Password must be at least 6 characters long</p>
+                      <div className="flex items-center justify-end">
+                        <a
+                          href="#"
+                          className="text-sm underline-offset-4 hover:underline"
+                        >
+                          Forgot your password?
+                        </a>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
