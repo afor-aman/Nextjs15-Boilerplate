@@ -1,12 +1,21 @@
-
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/partials/app-sidebar"
 import React from "react";
+import DashboardNavbar from "@/components/partials/dashboardNavbar";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      {children}
-    </div>
+    <SidebarProvider>
+    <AppSidebar />
+    <SidebarInset>
+      <main>
+        <DashboardNavbar />
+        <div className="flex p-2">
+          {children}
+        </div>
+      </main>
+    </SidebarInset>
+  </SidebarProvider>  
   );
 };
 
