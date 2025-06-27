@@ -118,5 +118,23 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(circle, oklch(0.553 0.013 58.071 / 0.15) 1px, transparent 1px); /* Light mode background */
+    background-size: 20px 20px;
+  }
+  
+  .dark body {
+    background-image: radial-gradient(circle, oklch(0.985 0.001 106.423 / 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  /* Add dotted background to main content areas */
+  .bg-background {
+    background-image: radial-gradient(circle, oklch(0.553 0.013 58.071 / 0.15) 1px, transparent 1px); /* Light mode background */
+    background-size: 20px 20px;
+  }
+  
+  .dark .bg-background {
+    background-image: radial-gradient(circle, oklch(0.985 0.001 106.423 / 0.08) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 }
