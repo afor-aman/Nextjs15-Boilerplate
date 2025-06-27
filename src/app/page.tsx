@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Hero from "@/components/layouts/Hero";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold">Home</h1>
+    <main className="">
+      <Hero />
     </main>
   );
 }
