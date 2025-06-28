@@ -21,11 +21,11 @@ export const signInAction = async (email: string, password: string) => {
     }
 };
 
-export const signUpAction = async (email: string, password: string) => {
+export const signUpAction = async (name: string, email: string, password: string) => {
     try {
         await auth.api.signUpEmail({
             body: {
-                name: email,
+                name,
                 email,
                 password,
             },

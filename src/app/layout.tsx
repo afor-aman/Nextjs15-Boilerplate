@@ -1,6 +1,8 @@
 // todo: Implement forget password functionality, password reset, and email verification, magic link, and google login.
 // todo: Basic SEO
 // todo: integrate payment gateway
+// todo: add google analytics
+// todo: email verification, before login
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";

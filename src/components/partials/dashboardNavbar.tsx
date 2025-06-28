@@ -11,11 +11,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 const dashboardNavbar = () => {
   const [session, setSession] = useState<any>(null);
 
-  function getInitialsFromEmail(email: string) {
-    if (!email || typeof email !== "string") return "";
+  function getInitialsFromName(name: string) {
+    if (!name || typeof name !== "string") return "";
 
-    const namePart = email.split("@")[0]; // Get part before '@'
-    const nameParts = namePart.split(/[\.\_\-\+]/).filter(Boolean); // Split by common separators
+    const nameParts = name.split(/[\.\_\-\+]/).filter(Boolean); // Split by common separators
 
     let initials = "";
 
@@ -31,6 +30,7 @@ const dashboardNavbar = () => {
   useEffect(() => {
     const fetchSession = async () => {
       const session = await getSession();
+      console.log("🚀 ~ fetchSession ~ session:", session)
       setSession(session);
     };
     fetchSession();
@@ -46,13 +46,13 @@ const dashboardNavbar = () => {
                 {/* <AvatarImage src={"https://github.com/shadcn.png"} /> */}
                 <AvatarFallback className="rounded-full w-full h-full flex items-center justify-center border border-gray-400">
                 <span className="text-sm text-foreground">
-                  {getInitialsFromEmail(session?.data?.user?.email)}
+                  {getInitialsFromName(session?.data?.user?.name)}
                 </span>
                 </AvatarFallback> 
               </Avatar>
             </TooltipTrigger>
             <TooltipContent>
-              {session?.data?.user?.email}
+              {session?.data?.user?.name}
             </TooltipContent>
           </Tooltip>
         </Avatar>

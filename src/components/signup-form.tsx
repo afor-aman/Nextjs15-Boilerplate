@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation"
 import { getSession } from "@/utils/getSession"
 
 const signupSchema = z.object({
+  name: z.string().min(1, "Name is required"),
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
   confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
@@ -47,6 +48,7 @@ export function SignupForm({
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -62,7 +64,7 @@ export function SignupForm({
     })
     
     try {
-      const result = await signUpAction(data.email, data.password)
+      const result = await signUpAction(data.name, data.email, data.password)
       
       if (result.success) {
         toast.success("Account created successfully!", {
@@ -142,6 +144,24 @@ export function SignupForm({
             </div>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Enter your name"
+                          disabled={isLoading}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="email"
