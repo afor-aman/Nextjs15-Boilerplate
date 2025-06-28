@@ -1,150 +1,181 @@
 'use client'
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-  Zap, 
-  Target, 
-  Shield, 
-  Sparkles, 
-  BarChart3, 
-  Clock, 
-  Users, 
-  CheckCircle2,
-  ArrowRight,
-  PlayCircle,
   Brain,
   Palette,
+  BarChart3,
+  FileText,
+  Search,
+  Calendar,
+  Puzzle,
+  Library,
+  Workflow,
   Globe,
-  Lock
+  Shield,
+  Sparkles,
+  Users,
+  MessageCircle,
+  Upload,
+  Moon,
+  Languages,
+  BookOpen,
+  RefreshCw,
+  Download,
+  ListChecks,
+  ArrowRight,
+  CheckCircle2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
-type ColorType = 'blue' | 'purple' | 'green' | 'orange' | 'slate';
+type ColorType = 'blue' | 'purple' | 'green' | 'orange' | 'teal' | 'indigo' | 'pink' | 'slate';
+type DemoType = 'writing' | 'autocomplete' | 'chat' | 'upload';
 
-interface Feature {
+interface FeaturedDemo {
   id: string;
   title: string;
   subtitle: string;
   description: string;
   color: ColorType;
   icon: React.ComponentType<{ className?: string }>;
-  benefits: string[];
-  placeholder: string;
+  demoType: DemoType;
 }
 
-const features: Feature[] = [
+interface AdditionalFeature {
+  title: string;
+  subtitle: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: ColorType;
+  isNew: boolean;
+}
+
+// Featured demos (top 4 with visual elements)
+const featuredDemos: FeaturedDemo[] = [
   {
     id: 'ai-writing',
     title: 'AI-Powered Writing Engine',
     subtitle: 'Generate high-quality content in seconds',
-    description: 'Our advanced AI understands context, tone, and your brand voice to create compelling content that converts. From blog posts to social media, emails to product descriptions.',
-    color: 'blue', // Trust & Intelligence
+    description: 'Our advanced AI understands context, tone, and your brand voice to create compelling content that converts.',
+    color: 'blue',
     icon: Brain,
-    benefits: [
-      'Understands your brand voice and tone',
-      'Creates SEO-optimized content automatically',
-      'Generates multiple variants to choose from',
-      'Learns from your feedback to improve'
-    ],
-    placeholder: '/api/placeholder/600/400'
+    demoType: 'writing'
   },
   {
     id: 'brand-voice',
     title: 'Smart Brand Voice Training',
     subtitle: 'Consistent voice across all content',
-    description: 'Train our AI on your existing content to perfectly match your brand personality. Every piece of content feels authentically yours, maintaining consistency at scale.',
-    color: 'purple', // Creativity & Premium
+    description: 'Train our AI on your existing content to perfectly match your brand personality and maintain consistency.',
+    color: 'purple',
     icon: Palette,
-    benefits: [
-      'Analyzes your existing content style',
-      'Maintains tone consistency across channels',
-      'Adapts to different content types',
-      'Evolves with your brand over time'
-    ],
-    placeholder: '/api/placeholder/600/400'
+    demoType: 'autocomplete'
   },
   {
-    id: 'analytics',
-    title: 'Performance Analytics',
-    subtitle: 'Data-driven content optimization',
-    description: 'Track how your content performs across channels. Get insights on engagement, conversions, and ROI to continuously improve your content strategy.',
-    color: 'orange', // Energy & Action
-    icon: BarChart3,
-    benefits: [
-      'Cross-platform performance tracking',
-      'A/B testing for content variants',
-      'ROI and conversion analytics',
-      'Automated optimization suggestions'
-    ],
-    placeholder: '/api/placeholder/600/400'
+    id: 'chat-assistant',
+    title: 'AI Content Assistant',
+    subtitle: 'Chat with your content library',
+    description: 'Ask questions about your content, get suggestions, and receive instant help from our AI assistant.',
+    color: 'green',
+    icon: MessageCircle,
+    demoType: 'chat'
   },
+  {
+    id: 'file-generation',
+    title: 'Generate From Your Files',
+    subtitle: 'Transform documents into content',
+    description: 'Upload your research, documents, or files and generate new content based on your existing materials.',
+    color: 'orange',
+    icon: Upload,
+    demoType: 'upload'
+  }
 ];
 
-const colorClasses: Record<ColorType, {
-  bg: string;
-  border: string;
-  icon: string;
-  text: string;
-  button: string;
-  accent: string;
-}> = {
-  blue: {
-    bg: 'bg-blue-50',
-    border: 'border-blue-100',
-    icon: 'text-blue-600',
-    text: 'text-blue-700',
-    button: 'bg-blue-600 hover:bg-blue-700',
-    accent: 'bg-blue-100'
+// All other features (grid layout)
+const additionalFeatures: AdditionalFeature[] = [
+  {
+    title: 'Performance Analytics',
+    subtitle: 'Track how your content performs across channels with detailed insights',
+    icon: BarChart3,
+    color: 'blue',
+    isNew: false
   },
-  purple: {
-    bg: 'bg-purple-50',
-    border: 'border-purple-100', 
-    icon: 'text-purple-600',
-    text: 'text-purple-700',
-    button: 'bg-purple-600 hover:bg-purple-700',
-    accent: 'bg-purple-100'
+  {
+    title: 'Multi-Language Support',
+    subtitle: 'Create content in 50+ languages with AI-powered translation',
+    icon: Languages,
+    color: 'teal',
+    isNew: false
   },
-  green: {
-    bg: 'bg-green-50',
-    border: 'border-green-100',
-    icon: 'text-green-600', 
-    text: 'text-green-700',
-    button: 'bg-green-600 hover:bg-green-700',
-    accent: 'bg-green-100'
+  {
+    title: 'Content Templates',
+    subtitle: 'Access 500+ professional templates for every content type',
+    icon: FileText,
+    color: 'green',
+    isNew: false
   },
-  orange: {
-    bg: 'bg-orange-50',
-    border: 'border-orange-100',
-    icon: 'text-orange-600',
-    text: 'text-orange-700', 
-    button: 'bg-orange-600 hover:bg-orange-700',
-    accent: 'bg-orange-100'
+  {
+    title: '1,700+ Content Styles',
+    subtitle: 'Write in any style required by your brand or target audience',
+    icon: Sparkles,
+    color: 'purple',
+    isNew: true
   },
-  slate: {
-    bg: 'bg-slate-50',
-    border: 'border-slate-200',
-    icon: 'text-slate-600',
-    text: 'text-slate-700',
-    button: 'bg-slate-600 hover:bg-slate-700',
-    accent: 'bg-slate-100'
+  {
+    title: 'SEO Optimization',
+    subtitle: 'Built-in SEO suggestions and keyword optimization for better ranking',
+    icon: Search,
+    color: 'indigo',
+    isNew: false
   }
+];
+
+const colorClasses: Record<ColorType, string> = {
+  blue: 'bg-blue-50 border-blue-100 text-blue-700',
+  purple: 'bg-purple-50 border-purple-100 text-purple-700',
+  green: 'bg-green-50 border-green-100 text-green-700',
+  orange: 'bg-orange-50 border-orange-100 text-orange-700',
+  teal: 'bg-teal-50 border-teal-100 text-teal-700',
+  indigo: 'bg-indigo-50 border-indigo-100 text-indigo-700',
+  pink: 'bg-pink-50 border-pink-100 text-pink-700',
+  slate: 'bg-slate-50 border-slate-100 text-slate-700'
+};
+
+const iconColors: Record<ColorType, string> = {
+  blue: 'text-blue-600',
+  purple: 'text-purple-600',
+  green: 'text-green-600',
+  orange: 'text-orange-600',
+  teal: 'text-teal-600',
+  indigo: 'text-indigo-600',
+  pink: 'text-pink-600',
+  slate: 'text-slate-600'
+};
+
+// Demo placeholder component with actual image
+const DemoPlaceholder = ({ type, title }: { type: DemoType; title: string }) => {
+  return (
+    <div className="rounded-xl overflow-hidden bg-white border border-border shadow-sm">
+      <div className="w-full h-full relative">
+        <Image 
+          src="/image.png" 
+          alt={`${title} Demo`} 
+          width={600} 
+          height={400} 
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  );
 };
 
 export default function Features() {
-  const [activeFeature, setActiveFeature] = useState('ai-writing');
-  const currentFeature = features.find(f => f.id === activeFeature) || features[0];
-  const colors = colorClasses[currentFeature.color];
-
   return (
     <section className="py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-background to-muted/30 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-      <div className="absolute top-0 right-1/3 w-80 h-80 bg-primary/3 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent/3 rounded-full blur-3xl"></div>
-
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="text-left mb-16 sm:mb-20">
+        <div className="text-center mb-16 sm:mb-20">
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20 mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Powerful Features</span>
@@ -155,126 +186,97 @@ export default function Features() {
               create amazing content
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             From AI-powered writing to team collaboration, WriteFlow gives you all the tools to create, optimize, and scale your content strategy.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Feature Navigation Tabs */}
-          <div className="lg:col-span-4 space-y-3">
-            <h3 className="text-lg font-semibold text-foreground mb-6">Core Features</h3>
-            {features.map((feature) => {
-              const isActive = activeFeature === feature.id;
-              const featureColors = colorClasses[feature.color];
-              const IconComponent = feature.icon;
-              
-              return (
-                <button
-                  key={feature.id}
-                  onClick={() => setActiveFeature(feature.id)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all duration-300 hover:scale-[1.02] ${
-                    isActive 
-                      ? `${featureColors.bg} ${featureColors.border} shadow-md` 
-                      : 'bg-background border-border hover:bg-muted/50'
-                  }`}
-                >
-                  <div className="flex items-start space-x-3">
-                    <div className={`p-2 rounded-lg ${isActive ? featureColors.accent : 'bg-muted'}`}>
-                      <IconComponent className={`w-5 h-5 ${isActive ? featureColors.icon : 'text-muted-foreground'}`} />
+        {/* Featured Demos Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          {featuredDemos.map((feature) => {
+            const IconComponent = feature.icon;
+            return (
+              <div
+                key={feature.id}
+                className={`rounded-2xl border p-6 transition-all duration-300 hover:shadow-lg ${colorClasses[feature.color]}`}
+              >
+                {/* Feature Header */}
+                <div className="mb-6">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className={`p-2 rounded-lg bg-white/50`}>
+                      <IconComponent className={`w-5 h-5 ${iconColors[feature.color]}`} />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className={`font-semibold text-sm mb-1 ${isActive ? featureColors.text : 'text-foreground'}`}>
-                        {feature.title}
-                      </h4>
-                      <p className="text-xs text-muted-foreground line-clamp-2">
-                        {feature.subtitle}
-                      </p>
+                    <div>
+                      <h3 className="text-lg font-bold text-foreground">{feature.title}</h3>
+                      <p className="text-sm font-medium opacity-80">{feature.subtitle}</p>
                     </div>
-                    {isActive && (
-                      <ArrowRight className={`w-4 h-4 ${featureColors.icon} flex-shrink-0`} />
-                    )}
                   </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Feature Content */}
-          <div className="lg:col-span-8">
-            <div className={`rounded-2xl border p-8 transition-all duration-500 ${colors.bg} ${colors.border}`}>
-              {/* Feature Header */}
-              <div className="mb-8">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className={`p-3 rounded-xl ${colors.accent}`}>
-                    <currentFeature.icon className={`w-6 h-6 ${colors.icon}`} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-foreground">{currentFeature.title}</h3>
-                    <p className={`text-sm ${colors.text} font-medium`}>{currentFeature.subtitle}</p>
-                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {currentFeature.description}
-                </p>
-              </div>
 
-              {/* Feature Image Placeholder */}
-              <div className="mb-8 rounded-xl overflow-hidden bg-gradient-to-br from-muted/50 to-muted border border-border">
-                <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-muted/30 to-muted/60">
-                  <div className="text-center">
-                    <PlayCircle className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
-                    <p className="text-muted-foreground font-medium">Feature Demo Placeholder</p>
-                    <p className="text-sm text-muted-foreground/70">{currentFeature.title}</p>
+                {/* Demo with Image */}
+                <DemoPlaceholder type={feature.demoType} title={feature.title} />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Additional Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {additionalFeatures.map((feature, index) => {
+            const IconComponent = feature.icon;
+            return (
+              <div
+                key={index}
+                className="bg-background rounded-xl border border-border p-6 hover:shadow-md transition-all duration-300 hover:scale-[1.02]"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className={`p-2 rounded-lg ${colorClasses[feature.color]}`}>
+                    <IconComponent className={`w-5 h-5 ${iconColors[feature.color]}`} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <h3 className="font-semibold text-foreground">{feature.title}</h3>
+                      {feature.isNew && (
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                          NEW
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {feature.subtitle}
+                    </p>
                   </div>
                 </div>
               </div>
-
-              {/* Feature Benefits */}
-              <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                {currentFeature.benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle2 className={`w-5 h-5 ${colors.icon} flex-shrink-0 mt-0.5`} />
-                    <span className="text-sm text-foreground font-medium">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Feature CTA */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  className={`${colors.button} text-white shadow-lg hover:shadow-xl transition-all duration-300`}
-                >
-                  Try it
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
         {/* Feature Stats */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           <div className="text-center">
             <div className="text-3xl font-bold text-primary mb-2">10x</div>
             <div className="text-sm text-muted-foreground">Faster Writing</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">99.9%</div>
-            <div className="text-sm text-muted-foreground">Uptime SLA</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">50K+</div>
+            <div className="text-3xl font-bold text-green-600 mb-2">50K+</div>
             <div className="text-sm text-muted-foreground">Happy Users</div>
           </div>
           <div className="text-center">
+            <div className="text-3xl font-bold text-purple-600 mb-2">1,700+</div>
+            <div className="text-sm text-muted-foreground">Content Styles</div>
+          </div>
+          <div className="text-center">
             <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
-            <div className="text-sm text-muted-foreground">Support</div>
+            <div className="text-sm text-muted-foreground">AI Support</div>
           </div>
         </div>
 
         {/* Final CTA */}
-        <div className="mt-16 text-center">
+        <div className="text-center">
           <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 border border-border/50">
             <h3 className="text-2xl font-bold text-foreground mb-4">
               Ready to transform your content strategy?
@@ -287,7 +289,7 @@ export default function Features() {
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
             >
               Start Your Free Trial
-              <Sparkles className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
         </div>
