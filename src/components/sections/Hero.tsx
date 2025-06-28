@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5">
       {/* Navigation Header */}
-      <nav className="w-full px-4 sm:px-6 lg:px-8 py-4 border-b border-border/50 backdrop-blur-sm bg-background/95 sticky top-0 z-50">
+      <nav className="w-full px-4 sm:px-6 lg:px-8 py-4 border-b border-border/50 backdrop-blur-sm bg-background/95 fixed top-0 z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
@@ -99,7 +99,7 @@ export default function Hero() {
       </nav>
 
               {/* Main Hero Section - Above the Fold */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh] py-8 sm:py-12 lg:py-24">
             
             {/* Left Column - Hero Content */}
