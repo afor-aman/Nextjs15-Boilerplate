@@ -14,6 +14,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Hero() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -101,7 +102,7 @@ export default function Hero() {
 
               {/* Main Hero Section - Above the Fold */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh] py-8 sm:py-12 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh] py-8 sm:py-12 lg:py-20">
             
             {/* Left Column - Hero Content */}
             <div className="space-y-6 sm:space-y-8 order-1 lg:order-1">
@@ -192,138 +193,9 @@ export default function Hero() {
               </div>
               
               {/* Main Product Interface */}
-              <div className="relative bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-2xl">
-                {/* Browser Header */}
-                <div className="flex items-center space-x-2 mb-4 sm:mb-6">
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
-                  <div className="ml-2 sm:ml-4 text-xs text-muted-foreground bg-accent/50 px-2 sm:px-3 py-1 rounded-full hidden sm:block">
-                    app.writeflow.ai
-                  </div>
-                </div>
-                
-                {/* Editor Interface */}
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2 sm:space-x-3">
-                      <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                      <span className="text-sm sm:text-base font-semibold text-foreground">AI Writing Assistant</span>
-                    </div>
-                    <div className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                      Online
-                    </div>
-                  </div>
-                  
-                  {/* Writing Interface */}
-                  <div className="bg-background rounded-lg p-3 sm:p-4 border border-border/50">
-                    <div className="text-xs sm:text-sm text-muted-foreground mb-2">✨ AI Suggestion</div>
-                    <div className="space-y-2 text-xs sm:text-sm">
-                      <p className="text-foreground">
-                        "Transform your marketing strategy with data-driven insights that deliver measurable results..."
-                      </p>
-                      <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                        <span>Writing in your brand voice</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-2 sm:pt-4">
-                    <div className="text-center">
-                      <div className="text-lg sm:text-2xl font-bold text-foreground">2.3s</div>
-                      <div className="text-xs text-muted-foreground">Avg generation</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg sm:text-2xl font-bold text-foreground">98%</div>
-                      <div className="text-xs text-muted-foreground">Accuracy rate</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg sm:text-2xl font-bold text-foreground">15+</div>
-                      <div className="text-xs text-muted-foreground">Content types</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Feature Cards - Hidden on mobile for cleaner look */}
-              <div className="hidden sm:block absolute -top-4 -left-4 bg-card border border-border rounded-xl p-3 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Zap className="w-4 h-4 text-yellow-500" />
-                  <span className="text-xs font-medium">10x faster writing</span>
-                </div>
-              </div>
-              
-              <div className="hidden sm:block absolute -bottom-4 -right-4 bg-card border border-border rounded-xl p-3 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Globe className="w-4 h-4 text-blue-500" />
-                  <span className="text-xs font-medium">25+ languages</span>
-                </div>
-              </div>
-
-              {/* Mobile Feature Pills - Shown only on mobile */}
-              <div className="flex sm:hidden justify-center space-x-4 mt-4">
-                <div className="flex items-center space-x-1 bg-card border border-border rounded-lg px-3 py-2 shadow-sm">
-                  <Zap className="w-3 h-3 text-yellow-500" />
-                  <span className="text-xs font-medium">10x faster</span>
-                </div>
-                <div className="flex items-center space-x-1 bg-card border border-border rounded-lg px-3 py-2 shadow-sm">
-                  <Globe className="w-3 h-3 text-blue-500" />
-                  <span className="text-xs font-medium">25+ languages</span>
-                </div>
-              </div>
+              <Image src="/image.png" alt="WriteFlow Interface" width={1000} height={1000} className="w-full border-2 border-primary rounded-lg h-full object-cover" />
             </div>
         </div>
-
-                  {/* Social Proof Section */}
-          <div className="py-12 sm:py-16 border-t border-border/50">
-            <div className="text-center mb-8 sm:mb-12">
-              <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">Trusted by teams at</p>
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-12 opacity-60">
-                <div className="h-7 sm:h-8 bg-muted rounded flex items-center justify-center px-4 sm:px-6 text-xs sm:text-sm font-medium">
-                  TechCorp
-                </div>
-                <div className="h-7 sm:h-8 bg-muted rounded flex items-center justify-center px-4 sm:px-6 text-xs sm:text-sm font-medium">
-                  StartupFlow
-                </div>
-                <div className="h-7 sm:h-8 bg-muted rounded flex items-center justify-center px-4 sm:px-6 text-xs sm:text-sm font-medium">
-                  CreativeStudio
-                </div>
-                <div className="h-7 sm:h-8 bg-muted rounded flex items-center justify-center px-4 sm:px-6 text-xs sm:text-sm font-medium">
-                  DataDriven
-                </div>
-                <div className="h-7 sm:h-8 bg-muted rounded flex items-center justify-center px-4 sm:px-6 text-xs sm:text-sm font-medium">
-                  GrowthLab
-                </div>
-              </div>
-            </div>
-            
-            {/* Testimonial */}
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-card border border-border rounded-xl sm:rounded-2xl p-6 sm:p-8">
-                <div className="flex justify-center mb-4">
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                </div>
-                <blockquote className="text-base sm:text-lg text-foreground mb-4 sm:mb-6 leading-relaxed">
-                  "WriteFlow has completely transformed how our marketing team creates content. We're publishing 3x more high-quality articles and our engagement rates have doubled."
-                </blockquote>
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base">
-                    SJ
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <div className="font-semibold text-foreground text-sm sm:text-base">Sarah Johnson</div>
-                    <div className="text-xs sm:text-sm text-muted-foreground">Head of Marketing, TechCorp</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
       </main>
     </div>
   );
