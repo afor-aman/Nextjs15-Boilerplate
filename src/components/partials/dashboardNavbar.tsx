@@ -12,19 +12,8 @@ const dashboardNavbar = () => {
   const [session, setSession] = useState<any>(null);
 
   function getInitialsFromName(name: string) {
-    if (!name || typeof name !== "string") return "";
-
-    const nameParts = name.split(/[\.\_\-\+]/).filter(Boolean); // Split by common separators
-
-    let initials = "";
-
-    if (nameParts.length === 1) {
-      initials = nameParts[0].slice(0, 2); // Take first 2 letters if only one part
-    } else {
-      initials = nameParts[0][0] + nameParts[1][0]; // First letter of first two parts
-    }
-
-    return initials.toUpperCase();
+    const userInitials = name ? name.split(' ').map((n: string) => n[0]).join('').toUpperCase() : 'U';
+    return userInitials;
   }
 
   useEffect(() => {
