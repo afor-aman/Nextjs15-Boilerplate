@@ -170,7 +170,7 @@ export default function Hero() {
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-6 pt-4 sm:pt-6 text-xs sm:text-sm text-muted-foreground">
+              {/* <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-6 pt-4 sm:pt-6 text-xs sm:text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
                   <span>No credit card required</span>
@@ -183,7 +183,7 @@ export default function Hero() {
                   <Users className="w-4 h-4 text-purple-500 flex-shrink-0" />
                   <span>Cancel anytime</span>
                 </div>
-              </div>
+              </div> */}
             </div>
 
                       {/* Right Column - Product Demo */}
