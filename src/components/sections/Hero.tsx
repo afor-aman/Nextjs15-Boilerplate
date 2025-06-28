@@ -13,6 +13,7 @@ import {
   X
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Hero() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,11 +49,13 @@ export default function Hero() {
 
           {/* Desktop Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <a href="#" className="text-muted-foreground font-medium hover:text-primary transition-colors">
+            <a href="/login" className="text-muted-foreground font-medium hover:text-primary transition-colors">
               Sign In
             </a>
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-6">
-              Start Free Trial
+              <Link href="/signup">
+                Sign Up
+              </Link>
             </Button>
           </div>
 
