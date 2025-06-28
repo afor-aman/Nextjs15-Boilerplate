@@ -8,9 +8,7 @@ import {
   CheckCircle,
   Users,
   Star,
-  Zap,
   Shield,
-  Globe,
   Menu,
   X
 } from 'lucide-react';
@@ -102,7 +100,7 @@ export default function Hero() {
 
               {/* Main Hero Section - Above the Fold */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh] py-8 sm:py-12 lg:py-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh] py-8 sm:py-12 lg:py-24">
             
             {/* Left Column - Hero Content */}
             <div className="space-y-6 sm:space-y-8 order-1 lg:order-1">
