@@ -9,9 +9,12 @@ export const LogoutButton = () => {
     const router = useRouter();
     
   return (
-    <Button variant="outline" className="w-full" onClick={() => {
-        authClient.signOut();
-        router.push("/");
-    }}><LogOutIcon />Logout</Button>
+    <div className="flex items-center gap-2 cursor-pointer" onClick={() => {
+      authClient.signOut();
+      router.push("/");
+    }}>
+      <LogOutIcon />
+      Logout
+    </div>
   )
 }

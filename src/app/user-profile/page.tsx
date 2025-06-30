@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { User, Mail, Crown } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@/components/ui/button";
 
 const UserProfile = () => {
   const [session, setSession] = useState<any>(null);
@@ -98,6 +100,22 @@ const UserProfile = () => {
                 {user?.emailVerified ? "Verified" : "Unverified"}
               </Badge>
             </div>
+            {!user?.emailVerified && (
+              <div className="mt-2">
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className=""
+                  onClick={() => {
+                    authClient.sendVerificationEmail({
+                      email: user?.email,
+                    });
+                  }}
+                >
+                  Verify Email
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
 

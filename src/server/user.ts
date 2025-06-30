@@ -1,7 +1,6 @@
 "use server"
 
 import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 
 export const signInAction = async (email: string, password: string) => {
     try {
@@ -13,10 +12,9 @@ export const signInAction = async (email: string, password: string) => {
         });
         return { success: true };
     } catch (error) {
-        console.error("Sign in error:", error);
         return { 
             success: false, 
-            error: "Invalid credentials. Please try again." 
+            error: (error as any).body.message || "Invalid credentials. Please try again."
         };
     }
 };

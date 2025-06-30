@@ -113,8 +113,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut/>
-              Logout
+              <LogoutButton />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
