@@ -3,6 +3,7 @@
 // todo: integrate payment gateway
 // todo: add google analytics
 // todo: email verification, before login
+// todo: add rate limit to send verification email
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
