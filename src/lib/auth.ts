@@ -14,6 +14,14 @@ export const auth = betterAuth({
     autoSignIn: false,
     minPasswordLength: 6,
     resetPasswordTokenExpiresIn: 60 * 60,
+    sendResetPassword: async ({ user, url, token }, request) => {
+      await resend.emails.send({
+        from: "Boilerplate <noreply@mail.aforaman.com>", // You could add your custom domain
+        to: user.email,
+        subject: 'Reset your password',
+        text: `Click the link to reset your password: ${url}`
+      })
+    }
   },
   emailVerification: {
     sendOnSignUp: true, // Automatically sends a verification email at signup
