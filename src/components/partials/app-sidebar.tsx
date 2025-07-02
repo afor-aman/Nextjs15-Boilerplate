@@ -97,13 +97,13 @@ import { useIsMobile } from "@/hooks/use-mobile";
             
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link href="/user-profile" className="cursor-pointer flex items-center gap-2">
+                <Link href="/dashboard/user-profile" className="cursor-pointer flex items-center gap-2">
                   <BadgeCheck />
                   Account
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href="/billing" className="cursor-pointer flex items-center gap-2">
+                <Link href="/dashboard/user-profile" className="cursor-pointer flex items-center gap-2">
                   <CreditCard />
                   Billing
                 </Link>

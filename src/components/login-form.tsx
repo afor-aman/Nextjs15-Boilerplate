@@ -26,6 +26,7 @@ import {
 import { signInAction } from "@/server/user"
 import { useRouter } from "next/navigation"
 import { getSession } from "@/utils/getSession"
+import { authClient } from "@/lib/auth-client"
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -86,8 +87,16 @@ export function LoginForm({
     }
   }
 
-  const handleGoogleLogin = () => {
-    console.log("Google login clicked")
+  const handleGoogleLogin = async () => {
+    try {
+      const data = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard"
+      })
+      console.log(data)
+    } catch (error) {
+      console.error("Google login error:", error)
+    }
   }
 
   //fetch session and check if user is logged in if so redirect to dashboard

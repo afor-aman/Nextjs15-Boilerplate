@@ -6,17 +6,10 @@ import DashboardNavbar from "@/components/partials/dashboardNavbar";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <SidebarProvider>
-    <AppSidebar />
-    <SidebarInset>
-      <main>
-        <DashboardNavbar />
-        <div className="flex p-2">
-          {children}
-        </div>
-      </main>
-    </SidebarInset>
-  </SidebarProvider>        
+    <div>
+
+          {children}    
+    </div>
   )
 }
 

@@ -35,7 +35,7 @@ const UserProfile = () => {
       }
     };
     fetchSession();
-  }, [router]);
+  }, []);
 
   if (loading) {
     return (
