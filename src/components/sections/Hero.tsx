@@ -6,9 +6,7 @@ import {
   ArrowRight, 
   Play,
   CheckCircle,
-  Users,
   Star,
-  Shield,
   Menu,
   X
 } from 'lucide-react';
@@ -129,7 +127,7 @@ export default function Hero() {
                 </h1>
                 
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl">
-                  Transform your ideas into compelling content in seconds. WriteFlow's AI understands your voice, adapts to your style, and delivers human-quality writing that converts.
+                  Transform your ideas into compelling content in seconds. WriteFlow&apos;s AI understands your voice, adapts to your style, and delivers human-quality writing that converts.
                 </p>
               </div>
 

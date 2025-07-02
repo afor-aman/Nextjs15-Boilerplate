@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { AlertTriangle, CheckCircle, ArrowRight, Zap, Clock, DollarSign, TrendingUp, Target, Star, Users, Eye } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Zap, Clock, DollarSign, TrendingUp, Target, Star, Users, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Problem() {
@@ -22,7 +22,7 @@ export default function Problem() {
             The Content Creation Reality Check
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            89% of content teams bleed hours on tasks that don't convert.
+            89% of content teams bleed hours on tasks that don&apos;t convert.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export default function Problem() {
               </h3>
               
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-                You're burning <strong className="text-destructive font-bold">20+ hours per week</strong> creating content that barely converts, while your competitors race ahead.
+                You&apos;re burning <strong className="text-destructive font-bold">20+ hours per week</strong> creating content that barely converts, while your competitors race ahead.
               </p>
 
               {/* Impact Stats */}
@@ -86,7 +86,7 @@ export default function Problem() {
 
             {/* Pain Point Quote */}
             <div className="bg-muted/30 p-6 rounded-xl border border-border/50 relative">
-              <div className="absolute top-4 left-4 text-6xl text-destructive/20 font-serif">"</div>
+              <div className="absolute top-4 left-4 text-6xl text-destructive/20 font-serif">&quot;</div>
               <p className="text-foreground italic text-lg pl-8 mb-3 font-medium">
                 I was spending 15 hours a week on content and barely getting results. It felt like I was stuck in quicksand.
               </p>
@@ -172,7 +172,7 @@ export default function Problem() {
 
             {/* Success Story */}
             <div className="bg-primary/5 p-6 rounded-xl border border-primary/20 relative">
-              <div className="absolute top-4 left-4 text-6xl text-primary/20 font-serif">"</div>
+              <div className="absolute top-4 left-4 text-6xl text-primary/20 font-serif">&quot;</div>
               <p className="text-foreground italic text-lg pl-8 mb-3">
                 WriteFlow transformed my content strategy. I went from 20 hours a week to 2 hours, and my engagement doubled.
               </p>

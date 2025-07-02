@@ -66,7 +66,7 @@ const UseCase: React.FC = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-            You're in control
+            You&apos;re in control
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Types of content WriteFlow can help you with

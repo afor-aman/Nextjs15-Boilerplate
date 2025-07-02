@@ -16,23 +16,21 @@ import Link from "next/link";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuGroup } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ChevronsUpDown } from "lucide-react";
-import { BadgeCheck, CreditCard, Bell, LogOut, Sparkles } from "lucide-react";
+import { BadgeCheck, CreditCard } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { getSession } from "@/utils/getSession";
 import { useIsMobile } from "@/hooks/use-mobile";
   
   export function AppSidebar() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     const [session, setSession] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const router = useRouter();
     const isMobile = useIsMobile();
 
     useEffect(() => {
       const fetchSession = async () => {
         const session = await getSession();
         setSession(session);
-        setLoading(false);
       };
       fetchSession();
     }, []);

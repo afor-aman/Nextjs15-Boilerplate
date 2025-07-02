@@ -17,12 +17,12 @@ const CTA: React.FC = () => {
             Never write alone
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-            Get intelligent suggestions, expand your ideas, and overcome writer's block with AI that understands your voice
+            Get intelligent suggestions, expand your ideas, and overcome writer&apos;s block with AI that understands your voice
           </p>
           
           {/* CTA Button */}
           <button className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] inline-flex items-center gap-2">
-            Start writing - it's free
+            Start writing - it&apos;s free
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
@@ -64,7 +64,7 @@ const CTA: React.FC = () => {
               <Zap className="w-8 h-8 text-green-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Instant Flow</h3>
-            <p className="text-gray-600">Break through writer's block with real-time assistance</p>
+            <p className="text-gray-600">Break through writer&apos;s block with real-time assistance</p>
           </div>
         </div>
 

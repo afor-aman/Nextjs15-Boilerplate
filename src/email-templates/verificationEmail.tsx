@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import * as React from 'react';
 
 interface EmailTemplateProps {

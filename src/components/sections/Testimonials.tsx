@@ -5,18 +5,10 @@ import {
   Quote,
   Users,
   TrendingUp,
-  Award,
-  CheckCircle2,
-  ArrowRight,
-  Sparkles,
   MessageSquare,
   ThumbsUp,
   Heart,
-  Zap,
-  Shield
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 
 // Featured testimonials (hero section)
 const featuredTestimonials = [
@@ -153,7 +145,7 @@ const StarRating = ({ rating }: { rating: number }) => {
 };
 
 // Avatar placeholder
-const Avatar = ({ src, alt, size = 'md' }: { src: string; alt: string; size?: 'sm' | 'md' | 'lg' }) => {
+const Avatar = ({ alt, size = 'md' }: { alt: string; size?: 'sm' | 'md' | 'lg' }) => {
   const sizeClasses = {
     sm: 'w-10 h-10',
     md: 'w-12 h-12',
@@ -225,7 +217,7 @@ export default function Testimonials() {
               
               {/* Content */}
               <blockquote className="text-lg text-foreground leading-relaxed mb-6">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </blockquote>
               
               {/* Metrics Badge */}
@@ -236,7 +228,7 @@ export default function Testimonials() {
               
               {/* Author Info */}
               <div className="flex items-center space-x-4">
-                <Avatar src={testimonial.avatar} alt={testimonial.name} size="lg" />
+                <Avatar alt={testimonial.name} size="lg" />
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-1">
                     <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
@@ -270,7 +262,7 @@ export default function Testimonials() {
               
               {/* Author Info */}
               <div className="flex items-center space-x-3">
-                <Avatar src={testimonial.avatar} alt={testimonial.name} size="sm" />
+                <Avatar alt={testimonial.name} size="sm" />
                 <div className="flex-1 min-w-0">
                   <h4 className="font-medium text-foreground text-sm">{testimonial.name}</h4>
                   <p className="text-xs text-muted-foreground truncate">

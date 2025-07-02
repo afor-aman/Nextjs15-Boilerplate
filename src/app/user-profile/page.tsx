@@ -11,6 +11,8 @@ import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 
 const UserProfile = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();

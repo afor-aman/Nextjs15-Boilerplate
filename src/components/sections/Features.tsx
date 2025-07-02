@@ -6,24 +6,11 @@ import {
   BarChart3,
   FileText,
   Search,
-  Calendar,
-  Puzzle,
-  Library,
-  Workflow,
-  Globe,
-  Shield,
   Sparkles,
-  Users,
   MessageCircle,
   Upload,
-  Moon,
   Languages,
-  BookOpen,
-  RefreshCw,
-  Download,
-  ListChecks,
   ArrowRight,
-  CheckCircle2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -151,7 +138,7 @@ const iconColors: Record<ColorType, string> = {
 };
 
 // Demo placeholder component with actual image
-const DemoPlaceholder = ({ type, title }: { type: DemoType; title: string }) => {
+const DemoPlaceholder = ({  title }: {  title: string }) => {
   return (
     <div className="rounded-xl overflow-hidden bg-white border border-border shadow-sm">
       <div className="w-full h-full relative">
@@ -217,7 +204,7 @@ export default function Features() {
                 </div>
 
                 {/* Demo with Image */}
-                <DemoPlaceholder type={feature.demoType} title={feature.title} />
+                <DemoPlaceholder title={feature.title} />
               </div>
             );
           })}
@@ -282,7 +269,7 @@ export default function Features() {
               Ready to transform your content strategy?
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Join thousands of content creators who've already revolutionized their workflow with WriteFlow.
+              Join thousands of content creators who&apos;ve already revolutionized their workflow with WriteFlow.
             </p>
             <Button 
               size="lg"
