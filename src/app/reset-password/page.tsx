@@ -47,7 +47,6 @@ const ResetPasswordForm = () => {
       newPassword: values.password,
       token: token,
     })
-    console.log("🚀 ~ onSubmit ~ response:", response)
     if (response.data) {
       toast.success("Password reset successfully", {
         description: <p className="text-sm text-blue-500">Please login with your new password</p>,

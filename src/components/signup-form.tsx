@@ -26,6 +26,7 @@ import {
 import { signUpAction } from "@/server/user"
 import { useRouter } from "next/navigation"
 import { getSession } from "@/utils/getSession"
+import { authClient } from "@/lib/auth-client"
 
 const signupSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -94,9 +95,15 @@ export function SignupForm({
     }
   }
 
-  const handleGoogleSignup = () => {
-    // Handle Google signup
-    console.log("Google signup clicked")
+  const handleGoogleLogin = async () => {
+    try {
+      const data = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard"
+      })
+    } catch (error) {
+      console.error("Google login error:", error)
+    }
   }
 
   //fetch session and check if user is logged in if so redirect to dashboard
@@ -125,7 +132,7 @@ export function SignupForm({
               <Button
                 variant="outline"
                 className="w-full"
-                onClick={handleGoogleSignup}
+                onClick={handleGoogleLogin}
                 disabled={isLoading}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

@@ -93,7 +93,6 @@ export function LoginForm({
         provider: "google",
         callbackURL: "/dashboard"
       })
-      console.log(data)
     } catch (error) {
       console.error("Google login error:", error)
     }
