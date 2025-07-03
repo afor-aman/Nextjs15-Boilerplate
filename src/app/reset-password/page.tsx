@@ -1,6 +1,6 @@
 "use client"
 
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { authClient } from '@/lib/auth-client'
 import { useSearchParams } from 'next/navigation'
+import { toast } from 'sonner'
 
 const formSchema = z.object({
   password: z.string().min(8, {
@@ -30,7 +31,7 @@ const formSchema = z.object({
 const ResetPasswordForm = () => {
   const searchParams = useSearchParams()
   const token = searchParams.get("token") as string
-
+  const [resettingPassword, setResettingPassword] = useState(false)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,10 +41,21 @@ const ResetPasswordForm = () => {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await authClient.resetPassword({
+    // Add a loading state here to show resetting password in a toast sonner
+    setResettingPassword(true)
+    const response = await authClient.resetPassword({
       newPassword: values.password,
       token: token,
     })
+    console.log("🚀 ~ onSubmit ~ response:", response)
+    if (response.data) {
+      toast.success("Password reset successfully", {
+        description: <p className="text-sm text-blue-500">Please login with your new password</p>,
+      })
+    } else {
+      toast.error(response.error.message || "Failed to reset password")
+    }
+    setResettingPassword(false)
   }
 
   return (
@@ -75,7 +87,7 @@ const ResetPasswordForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">Reset Password</Button>
+        <Button type="submit" className="w-full" disabled={resettingPassword}>{resettingPassword ? "Resetting..." : "Reset Password"} </Button>
       </form>
     </Form>
   )
@@ -83,7 +95,7 @@ const ResetPasswordForm = () => {
 
 const ResetPassword = () => {
   return (
-    <div className="space-y-6 max-w-md mx-auto p-6">
+    <div className="space-y-6 max-w-md mx-auto p-6 h-screen flex flex-col justify-center">
       <h1 className="text-2xl font-bold">Reset Password</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <ResetPasswordForm />

@@ -9,12 +9,15 @@ import { Badge } from "@/components/ui/badge";
 import { User, Mail, Crown } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
+import { sendVerificationEmailAction } from "@/server/user";
+import { toast } from "sonner";
 
 const UserProfile = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [sendingEmail, setSendingEmail] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -56,6 +59,23 @@ const UserProfile = () => {
   
   // Dummy plan - will be replaced with real logic later
   const userPlan = "Pro";
+
+  const handleSendVerificationEmail = async () => {
+    // Add a loading state here to show sending email in a toast sonner
+
+    setSendingEmail(true)
+
+    const response = await sendVerificationEmailAction(user?.email)
+    if (response.success) {
+      toast.success("Verification email sent", {
+        description: <p className="text-sm text-blue-500">Please check your email for a verification link</p>,
+      })
+    } else {
+      toast.error(response.error)
+    }
+
+    setSendingEmail(false)
+  }
 
   return (
     <div className="container mx-auto p-8 space-y-6">
@@ -108,13 +128,10 @@ const UserProfile = () => {
                   size="sm" 
                   variant="outline" 
                   className=""
-                  onClick={() => {
-                    authClient.sendVerificationEmail({
-                      email: user?.email,
-                    });
-                  }}
-                >
-                  Verify Email
+                  onClick={handleSendVerificationEmail}
+                  disabled={sendingEmail}
+                  >
+                  {sendingEmail ? "Sending..." : "Verify Email"}    
                 </Button>
               </div>
             )}

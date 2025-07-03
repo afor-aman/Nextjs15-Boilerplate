@@ -180,7 +180,7 @@ export function LoginForm({
                         <p className="text-sm text-muted-foreground">Password must be at least 6 characters long</p>
                       <div className="flex items-center justify-end">
                         <a
-                          href="#"
+                          href="/forgot-password"
                           className="text-sm underline-offset-4 hover:underline"
                         >
                           Forgot your password?
