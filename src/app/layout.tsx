@@ -5,6 +5,10 @@
 // todo: email verification, before login
 // todo: add rate limit to send verification email
 
+// Done: added rate Limit on signup, login, forgot password, send verification email
+// Done: Implement forgot password functionality, password reset, and email verification, and google login.
+
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";

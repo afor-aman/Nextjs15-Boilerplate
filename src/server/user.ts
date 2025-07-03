@@ -9,8 +9,9 @@ import {
 import { headers } from "next/headers";
 
 export const signInAction = async (email: string, password: string) => {
+  const ip =  (await headers()).get('x-forwarded-for') || "127.0.0.1"
   try {
-    await authRateLimiter.consume(email, 1);
+    await authRateLimiter.consume(ip, 1);
   } catch (error) {
     return {
       success: false,
