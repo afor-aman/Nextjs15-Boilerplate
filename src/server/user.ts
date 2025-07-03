@@ -12,6 +12,7 @@ export const signInAction = async (email: string, password: string) => {
   const ip =  (await headers()).get('x-forwarded-for') || "127.0.0.1"
   try {
     await authRateLimiter.consume(ip, 1);
+    await authRateLimiter.consume(email, 1);
   } catch (error) {
     return {
       success: false,
@@ -45,6 +46,7 @@ export const signUpAction = async (
 
   try {
     await authRateLimiter.consume(ip, 1);
+    await authRateLimiter.consume(email, 1);
   } catch (error) {
     return {
       success: false,
@@ -78,10 +80,11 @@ export const signUpAction = async (
 };
 
 export const sendVerificationEmailAction = async (email: string) => {
-  // const ip =  (await headers()).get('x-forwarded-for') || "127.0.0.1"
+  const ip =  (await headers()).get('x-forwarded-for') || "127.0.0.1"
 
   try {
     await verificationEmailRateLimiter.consume(email, 1);
+    await verificationEmailRateLimiter.consume(ip, 1);
   } catch (error) {
     return {
       success: false,
@@ -107,8 +110,10 @@ export const sendVerificationEmailAction = async (email: string) => {
 };
 
 export const forgotPasswordAction = async (email: string) => {
+  const ip =  (await headers()).get('x-forwarded-for') || "127.0.0.1"
   try {
     await forgotPasswordRateLimiter.consume(email, 1);
+    await forgotPasswordRateLimiter.consume(ip, 1);
   } catch (error) {
     return {
       success: false,
