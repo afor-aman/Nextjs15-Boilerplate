@@ -20,6 +20,12 @@ export const signInAction = async (email: string, password: string) => {
 };
 
 export const signUpAction = async (name: string, email: string, password: string) => {
+    if (!name) {
+        return { 
+            success: false, 
+            error: "Name is required" 
+        };
+    }
     try {
         await auth.api.signUpEmail({
             body: {
@@ -30,10 +36,9 @@ export const signUpAction = async (name: string, email: string, password: string
         });
         return { success: true };
     } catch (error) {
-        console.error("Sign up error:", error);
         return { 
             success: false, 
-            error: "Failed to create account. Please try again." 
+            error: (error as any).body.message || "Failed to create account. Please try again." 
         };
     }
 };  
